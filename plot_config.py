@@ -8,16 +8,7 @@ from matplotlib.colors import ListedColormap
 from matplotlib.font_manager import FontManager
 import colorsys
 
-# https://github.com/olgabot/sciencemeetproductivity.tumblr.com/blob/master/posts/2012/11/how-to-set-helvetica-as-the-default-sans-serif-font-in.md
-# mpl.rcParams['font.family'] = 'Helvetica'  # 'Helvetica' or 'sans-serif'
-fm = FontManager()
-font_names = [f.name for f in fm.ttflist] # Get list of available font names
-if 'Helvetica' in font_names:  # Check if Helvetica is available
-    mpl.rcParams['font.family'] = 'Helvetica'
-    # print("Using Helvetica font.")
-else:
-    mpl.rcParams['font.family'] = 'sans-serif'
-    print("Helvetica not found. Using sans-serif font instead.")
+mpl.rcParams['font.family'] = 'Helvetica', 'sans-serif'
 
 mpl.rcParams["xtick.direction"] = 'out' # 'out'
 mpl.rcParams["ytick.direction"] = 'out'
