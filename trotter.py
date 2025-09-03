@@ -19,6 +19,30 @@ import jax.numpy as jnp
 import jax.scipy.linalg as jsl
 
 import matplotlib.pyplot as plt
+from qiskit.quantum_info import SparsePauliOp
+
+
+# from quantum_simulation_recipe.bounds import *
+# from quantum_simulation_recipe.trotter import pf
+# pf_r = pf
+
+def commutator(A, B):
+    return A @ B - B @ A
+
+# def anticommutator(A, B, to_sparse=False):
+def anticommutator(A, B):
+    return A @ B + B @ A
+
+def norm(A, ord='spectral'):
+    if ord == 'fro':
+        return np.linalg.norm(A)
+    elif ord == 'spectral':
+        return np.linalg.norm(A, ord=2)
+    elif ord == '4':
+        return np.trace(A @ A.conj().T @ A @ A.conj().T)**(1/4)
+    else:
+        # raise ValueError('norm is not defined')
+        return np.linalg.norm(A, ord=ord)
 
 # from quantum_simulation_recipe.bounds import *
 
@@ -211,3 +235,71 @@ def mpi_sparse_expm(list_herms, t, r):
     pool.join()
 
     return list_unitaries
+
+
+
+def tight_bound(h_list: list, order: int, t: float, r: int, type='spectral', verbose=False):
+    L = len(h_list)
+    if isinstance(h_list[0], np.ndarray):
+        d = h_list[0].shape[0]
+    elif isinstance(h_list[0], SparsePauliOp):
+        n = h_list[0].num_qubits
+        d = 2**n
+    # elif isinstance(h_list[0], csr_matrix):
+    #     d = h_list[0].todense().shape[0]
+    else:
+        raise ValueError('Hamiltonian type is not defined')
+
+    if order == 1:
+        a_comm = 0
+        for i in range(0, L-1):
+            # if isinstance(h_list[i], np.ndarray):
+            #     temp = np.zeros((d, d), dtype=complex)
+            # else:
+            #     temp = SparsePauliOp.from_list([("I"*n, 0)])
+            
+            # for j in range(i + 1, L):
+            #     temp += commutator(h_list[i], h_list[j])
+            temp = sum([commutator(h_list[i], h_list[j]) for j in range(i + 1, L)])
+            a_comm += norm(temp, ord=type)
+
+        if type == 'spectral':
+            error = a_comm * t**2 / (2*r)
+        elif type == 'fro':
+            error = a_comm * t**2 / (2*r*np.sqrt(d))
+        else:
+            raise ValueError(f'type={type} is not defined')
+    elif order == 2:
+        c1 = 0
+        c2 = 0
+        for i in range(0, L-1):
+            # if isinstance(h_list[i], np.ndarray):
+            #     temp = np.zeros((d, d), dtype=complex)
+            # else:
+            #     temp = SparsePauliOp.from_list([("I"*n, 0)])
+            # for j in range(i + 1, L):
+            #     temp += h_list[j]
+            temp = sum(h_list[i+1:])
+            # h_sum3 = sum(h[k] for k in range(i+1, L))
+            # print(h_sum3.shape)
+            # h_sum2 = sum(h[k] for k in range(i+1, L))
+            c1 += norm(commutator(temp, commutator(temp, h_list[i])), ord=type) 
+            # c1 = norm(commutator(h[0]+h[1], commutator(h[1]+h[2], h[0]))) + norm(commutator(h[2], commutator(h[2], h[1])))
+            # c2 = norm(commutator(h[0], commutator(h[0],h[1]+h[2]))) + norm(commutator(h[1], commutator(h[1], h[2])))
+            c2 += norm(commutator(h_list[i], commutator(h_list[i], temp)), ord=type)
+        if type == 'spectral':
+            error = c1 * t**3 / r**2 / 12 + c2 *  t**3 / r**2 / 24 
+        elif type == 'fro':
+            # print(c1, c2)
+            error = c1 * t**3 / r**2 / 12 / np.sqrt(d) + c2 *  t**3 / r**2 / 24 / np.sqrt(d)
+            # print('random input:', error)
+        elif type == '4':
+            error = c1 * t**3 / r**2 / 12 / d**(1/4) + c2 *  t**3 / r**2 / 24 / d**(1/4)
+        else:
+            raise ValueError(f'type={type} is not defined')
+    else: 
+        raise ValueError(f'higer order (order={order}) is not defined')
+
+    if verbose: print(f'c1={c1}, c2={c2}')
+
+    return error
