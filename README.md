@@ -11,9 +11,10 @@ This notebook explores how entanglement entropy evolves during quantum walks on 
 ## trotter steps 
 
 [cudaq](https://github.com/jonahso/quantum-walk-and-entanglement/blob/cf4706280908de568fc7fd238cd8d1a79b1e0c0b/trotter_steps_cudaq_edited.ipynb) 
-// [qiskit-aer=gpu](https://github.com/jonahso/quantum-walk-and-entanglement/blob/dc17a037ce04b46b92eb0e7dc89eb6209a23f023/trotter_steps_qiskit.ipynb) 
-// [matrix exponential](https://github.com/jonahso/quantum-walk-and-entanglement/blob/dc17a037ce04b46b92eb0e7dc89eb6209a23f023/entanglement_trotter_error.ipynb) 
-This notebook implements trotter steps, corresponding to the paper "... " utilizing cudaq, which efficiently expended the system size to up to 25 qubits. 
+
+[qiskit-aer=gpu](https://github.com/jonahso/quantum-walk-and-entanglement/blob/dc17a037ce04b46b92eb0e7dc89eb6209a23f023/trotter_steps_qiskit.ipynb) 
+
+[matrix exponential](https://github.com/jonahso/quantum-walk-and-entanglement/blob/dc17a037ce04b46b92eb0e7dc89eb6209a23f023/entanglement_trotter_error.ipynb) 
 
 The document below records the performances of qiskit CPU, qiskit GPU and cudaq GPU: 
 
