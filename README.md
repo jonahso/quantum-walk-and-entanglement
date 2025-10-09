@@ -4,16 +4,16 @@ The github repo provides several notebooks that combines graph-based Hamiltonian
 
 ## random walk 
 
-https://github.com/jonahso/quantum-walk-and-entanglement/blob/a3abb579f48e95c36719e9cfe3adbf52e8067be3/random_walk.ipynb 
+[random walk](https://github.com/jonahso/quantum-walk-and-entanglement/blob/a3abb579f48e95c36719e9cfe3adbf52e8067be3/random_walk.ipynb) 
 
 This notebook explores how entanglement entropy evolves during quantum walks on various graph structures, including glued-tree graphs. 
 
 ## trotter steps 
 
-https://github.com/jonahso/quantum-walk-and-entanglement/blob/a3abb579f48e95c36719e9cfe3adbf52e8067be3/trotter_steps.ipynb 
+[cudaq](https://github.com/jonahso/quantum-walk-and-entanglement/blob/cf4706280908de568fc7fd238cd8d1a79b1e0c0b/trotter_steps_cudaq_edited.ipynb) 
 
 This notebook implements trotter steps, corresponding to the paper "... " utilizing cudaq, which efficiently expended the system size to up to 25 qubits. 
 
 The document below records the performances of qiskit CPU, qiskit GPU and cudaq GPU: 
 
-https://docs.google.com/document/d/19h4Z0-DiqDh6jvB_zOMiuUDnqxpCwPj00U1Lpo-U6t8/edit?usp=sharing 
+[CPU/ GPU compairson](https://docs.google.com/document/d/19h4Z0-DiqDh6jvB_zOMiuUDnqxpCwPj00U1Lpo-U6t8/edit?usp=sharing) 
