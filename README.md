@@ -4,7 +4,7 @@ The github repo provides several notebooks that combines graph-based Hamiltonian
 
 ## random walk 
 
-[random walk](https://github.com/jonahso/quantum-walk-and-entanglement/blob/a3abb579f48e95c36719e9cfe3adbf52e8067be3/random_walk.ipynb) 
+[Random Walk on Different Graphs](https://github.com/jonahso/quantum-walk-and-entanglement/blob/a3abb579f48e95c36719e9cfe3adbf52e8067be3/random_walk.ipynb) 
 
 This notebook explores how entanglement entropy evolves during quantum walks on various graph structures, including glued-tree graphs. 
 
