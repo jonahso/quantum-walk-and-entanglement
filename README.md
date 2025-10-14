@@ -10,7 +10,7 @@ This notebook explores how entanglement entropy evolves during quantum walks on 
 
 ## trotter steps 
 
-[cudaq](https://github.com/jonahso/quantum-walk-and-entanglement/blob/cf4706280908de568fc7fd238cd8d1a79b1e0c0b/trotter_steps_cudaq_edited.ipynb) 
+[cudaq](https://github.com/jonahso/quantum-walk-and-entanglement/blob/772c9cd6d2e3dec6abd41bcc32ff62ce04cc4cc0/trotter_steps.ipynb)) 
 
 [qiskit-aer-gpu](https://github.com/jonahso/quantum-walk-and-entanglement/blob/dc17a037ce04b46b92eb0e7dc89eb6209a23f023/trotter_steps_qiskit.ipynb) 
 
