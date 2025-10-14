@@ -4,7 +4,7 @@ The github repo provides several notebooks that combines graph-based Hamiltonian
 
 ## Trotter steps entanglement 
 
-[cudaq](https://github.com/jonahso/quantum-walk-and-entanglement/blob/772c9cd6d2e3dec6abd41bcc32ff62ce04cc4cc0/trotter_steps.ipynb)) 
+[cudaq](https://github.com/jonahso/quantum-walk-and-entanglement/blob/772c9cd6d2e3dec6abd41bcc32ff62ce04cc4cc0/trotter_steps.ipynb)
 
 [qiskit-aer-gpu](https://github.com/jonahso/quantum-walk-and-entanglement/blob/dc17a037ce04b46b92eb0e7dc89eb6209a23f023/trotter_steps_qiskit.ipynb) 
 
